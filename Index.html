@@ -1,0 +1,184 @@
+
+<!DOCTYPE html>
+<html lang="gu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#5125d5">
+<title>JK ONLINE | Digital Services</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,sans-serif;background:#f5f4ff;color:#202039}
+header{background:linear-gradient(120deg,#5125d5,#087ee8,#e83eaa);color:white;padding:20px 5%;position:sticky;top:0;z-index:5}
+.top{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.logo{font-size:25px;font-weight:900}
+select,button,input{padding:11px;border-radius:9px;border:1px solid #ddd}
+button{cursor:pointer;background:#5426d5;color:white;border:0;font-weight:bold}
+.hero{padding:55px 20px;text-align:center;background:linear-gradient(135deg,#5125d5,#087ee8,#ed3eaa);color:white}
+.hero h1{font-size:36px;margin-bottom:12px}
+.hero p{margin:12px}
+.hero button{background:#fff;color:#5125d5;padding:13px 25px}
+.container{max-width:1100px;margin:auto;padding:25px 16px}
+.section-title{text-align:center;margin:15px 0 25px}
+.section-title h2{font-size:26px;color:#5125d5}
+.search{width:100%;margin-bottom:20px;padding:14px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:15px}
+.service{background:white;padding:20px 10px;border-radius:15px;text-align:center;box-shadow:0 3px 15px #ddd;cursor:pointer;transition:.2s}
+.service:hover{transform:translateY(-4px)}
+.service .emoji{font-size:35px;margin-bottom:12px}
+.service h3{font-size:15px;margin-bottom:8px}
+.service p{font-size:12px;color:#777}
+.panel{background:white;padding:22px;border-radius:15px;margin-top:25px;box-shadow:0 3px 15px #ddd}
+.panel h2{color:#5125d5;margin-bottom:15px}
+.form-control{width:100%;margin:8px 0 15px}
+footer{background:#202039;color:white;text-align:center;padding:25px;margin-top:30px}
+.modal{display:none;position:fixed;inset:0;background:#0009;z-index:10;align-items:center;justify-content:center;padding:15px}
+.modal-box{background:white;padding:25px;border-radius:15px;width:100%;max-width:400px}
+.close{float:right;background:#eee;color:#222}
+.small{font-size:12px;color:#777;margin-top:12px}
+</style>
+</head>
+<body>
+
+<header>
+ <div class="top">
+  <div class="logo">🌐 JK ONLINE</div>
+  <select id="language" onchange="changeLang()">
+   <option value="gu">ગુજરાતી</option>
+   <option value="hi">हिंदी</option>
+   <option value="en">English</option>
+  </select>
+  <button onclick="openLogin()" id="loginBtn">Login / Register</button>
+ </div>
+</header>
+
+<section class="hero">
+ <h1 id="welcome">તમારી બધી ઓનલાઇન સેવાઓ એક જ જગ્યાએ</h1>
+ <p id="subtitle">JK ONLINE માં આપનું સ્વાગત છે</p>
+ <button onclick="document.getElementById('services').scrollIntoView()">Explore Services</button>
+</section>
+
+<main class="container">
+ <div class="section-title">
+  <h2 id="serviceTitle">અમારી સેવાઓ</h2>
+  <p id="serviceSub">તમારી જરૂરી સેવા પસંદ કરો</p>
+ </div>
+
+ <input class="search" id="search" placeholder="🔍 સેવા શોધો..." oninput="filterServices()">
+
+ <div class="grid" id="services">
+  <div class="service" data-name="RC PDF" onclick="book('RC PDF')"><div class="emoji">🚗</div><h3>RC PDF</h3><p>Vehicle RC Service</p></div>
+  <div class="service" data-name="DL PDF" onclick="book('DL PDF')"><div class="emoji">🪪</div><h3>DL PDF</h3><p>Driving Licence</p></div>
+  <div class="service" data-name="LL PDF" onclick="book('LL PDF')"><div class="emoji">🚘</div><h3>LL PDF</h3><p>Learning Licence</p></div>
+  <div class="service" data-name="Voter ID" onclick="book('Voter ID')"><div class="emoji">🗳️</div><h3>Voter ID</h3><p>Voter Services</p></div>
+  <div class="service" data-name="PAN Card" onclick="book('PAN Card')"><div class="emoji">💳</div><h3>PAN Card</h3><p>PAN Services</p></div>
+  <div class="service" data-name="Aadhaar" onclick="book('Aadhaar')"><div class="emoji">🆔</div><h3>Aadhaar</h3><p>Aadhaar Services</p></div>
+  <div class="service" data-name="Ayushman Card" onclick="book('Ayushman Card')"><div class="emoji">🏥</div><h3>Ayushman Card</h3><p>Health Services</p></div>
+  <div class="service" data-name="Online Form" onclick="book('Online Form')"><div class="emoji">📝</div><h3>Online Form</h3><p>Application Services</p></div>
+ </div>
+
+ <div class="panel">
+  <h2 id="bookingTitle">📋 Online Service Booking</h2>
+  <form onsubmit="sendBooking(event)">
+   <label>Name</label>
+   <input class="form-control" id="customer" required placeholder="તમારું નામ">
+   <label>Mobile Number</label>
+   <input class="form-control" id="mobile" required maxlength="10" pattern="[0-9]{10}" placeholder="10 Digit Mobile">
+   <label>Service</label>
+   <select class="form-control" id="selectedService">
+    <option>RC PDF</option><option>DL PDF</option><option>LL PDF</option>
+    <option>Voter ID</option><option>PAN Card</option><option>Aadhaar</option>
+    <option>Ayushman Card</option><option>Online Form</option>
+   </select>
+   <button type="submit" id="bookBtn">Submit Booking</button>
+  </form>
+  <p class="small">Demo booking only. Connect a secure backend to receive and manage real bookings.</p>
+ </div>
+
+ <div class="panel">
+  <h2>👨‍💼 JK ONLINE Admin</h2>
+  <p>Admin dashboard will be connected to secure authentication and database in the next step.</p>
+  <button onclick="openLogin()">Admin Login</button>
+ </div>
+</main>
+
+<footer>
+ <h2>🌐 JK ONLINE</h2>
+ <p>Digital Services | Customer Support</p>
+ <p>Domain: jkonline.new.tg</p>
+ <p>© 2026 JK ONLINE. All Rights Reserved.</p>
+</footer>
+
+<div class="modal" id="loginModal">
+ <div class="modal-box">
+  <button class="close" onclick="closeLogin()">✕</button>
+  <h2>JK ONLINE Login</h2>
+  <p style="margin:12px 0">Customer Login / Registration</p>
+  <input class="form-control" placeholder="Email Address" type="email">
+  <input class="form-control" placeholder="Password" type="password">
+  <button onclick="alert('Authentication is not connected yet.')" style="width:100%">Login</button>
+  <p class="small">Demo screen. Secure Firebase Authentication will be added next.</p>
+ </div>
+</div>
+
+<script>
+const translations={
+ gu:{
+ welcome:"તમારી બધી ઓનલાઇન સેવાઓ એક જ જગ્યાએ",
+ subtitle:"JK ONLINE માં આપનું સ્વાગત છે",
+ serviceTitle:"અમારી સેવાઓ",
+ serviceSub:"તમારી જરૂરી સેવા પસંદ કરો",
+ loginBtn:"Login / Register",
+ bookingTitle:"📋 ઓનલાઇન સેવા બુકિંગ",
+ bookBtn:"બુકિંગ સબમિટ કરો"
+ },
+ hi:{
+ welcome:"आपकी सभी ऑनलाइन सेवाएं एक ही जगह",
+ subtitle:"JK ONLINE में आपका स्वागत है",
+ serviceTitle:"हमारी सेवाएं",
+ serviceSub:"अपनी जरूरी सेवा चुनें",
+ loginBtn:"लॉगिन / रजिस्टर",
+ bookingTitle:"📋 ऑनलाइन सर्विस बुकिंग",
+ bookBtn:"बुकिंग सबमिट करें"
+ },
+ en:{
+ welcome:"All Your Online Services in One Place",
+ subtitle:"Welcome to JK ONLINE",
+ serviceTitle:"Our Services",
+ serviceSub:"Choose your required service",
+ loginBtn:"Login / Register",
+ bookingTitle:"📋 Online Service Booking",
+ bookBtn:"Submit Booking"
+ }
+};
+
+function changeLang(){
+ let t=translations[document.getElementById('language').value];
+ Object.keys(t).forEach(id=>{
+  document.getElementById(id).textContent=t[id];
+ });
+}
+
+function openLogin(){
+ document.getElementById('loginModal').style.display='flex';
+}
+function closeLogin(){
+ document.getElementById('loginModal').style.display='none';
+}
+function book(name){
+ document.getElementById('selectedService').value=name;
+ document.querySelector('.panel').scrollIntoView({behavior:'smooth'});
+}
+function filterServices(){
+ let q=document.getElementById('search').value.toLowerCase();
+ document.querySelectorAll('.service').forEach(s=>{
+  s.style.display=s.dataset.name.toLowerCase().includes(q)?'block':'none';
+ });
+}
+function sendBooking(e){
+ e.preventDefault();
+ alert('આ Demo Website છે. Booking હાલમાં સાચવાતી નથી. Backend જોડવાનું બાકી છે.');
+}
+</script>
+</body>
+</html>
