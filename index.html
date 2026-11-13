@@ -1,184 +1,577 @@
 
 <!DOCTYPE html>
-<html lang="gu">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#5125d5">
-<title>JK ONLINE | Digital Services</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#5425d5">
+<title>JK ONLINE</title>
+
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:Arial,sans-serif;background:#f5f4ff;color:#202039}
-header{background:linear-gradient(120deg,#5125d5,#087ee8,#e83eaa);color:white;padding:20px 5%;position:sticky;top:0;z-index:5}
-.top{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
-.logo{font-size:25px;font-weight:900}
-select,button,input{padding:11px;border-radius:9px;border:1px solid #ddd}
-button{cursor:pointer;background:#5426d5;color:white;border:0;font-weight:bold}
-.hero{padding:55px 20px;text-align:center;background:linear-gradient(135deg,#5125d5,#087ee8,#ed3eaa);color:white}
-.hero h1{font-size:36px;margin-bottom:12px}
-.hero p{margin:12px}
-.hero button{background:#fff;color:#5125d5;padding:13px 25px}
-.container{max-width:1100px;margin:auto;padding:25px 16px}
-.section-title{text-align:center;margin:15px 0 25px}
-.section-title h2{font-size:26px;color:#5125d5}
-.search{width:100%;margin-bottom:20px;padding:14px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:15px}
-.service{background:white;padding:20px 10px;border-radius:15px;text-align:center;box-shadow:0 3px 15px #ddd;cursor:pointer;transition:.2s}
-.service:hover{transform:translateY(-4px)}
-.service .emoji{font-size:35px;margin-bottom:12px}
-.service h3{font-size:15px;margin-bottom:8px}
-.service p{font-size:12px;color:#777}
-.panel{background:white;padding:22px;border-radius:15px;margin-top:25px;box-shadow:0 3px 15px #ddd}
-.panel h2{color:#5125d5;margin-bottom:15px}
-.form-control{width:100%;margin:8px 0 15px}
-footer{background:#202039;color:white;text-align:center;padding:25px;margin-top:30px}
-.modal{display:none;position:fixed;inset:0;background:#0009;z-index:10;align-items:center;justify-content:center;padding:15px}
-.modal-box{background:white;padding:25px;border-radius:15px;width:100%;max-width:400px}
-.close{float:right;background:#eee;color:#222}
-.small{font-size:12px;color:#777;margin-top:12px}
+body{font-family:Arial,sans-serif;background:#f4f3fa;color:#222}
+button,input,select{font:inherit}
+button{border:0;border-radius:12px;padding:12px 16px;background:#592bd5;color:white;font-weight:bold;cursor:pointer}
+input{width:100%;padding:13px;border:1px solid #ddd;border-radius:10px;margin:7px 0 15px}
+.hidden{display:none!important}
+header{background:linear-gradient(120deg,#5425d5,#087fe5,#e83eaa);color:white;padding:16px}
+.head{display:flex;align-items:center;justify-content:space-between;gap:12px;max-width:1100px;margin:auto}
+.logo{font-size:23px;font-weight:900}
+.balance{background:#ffffff25;border:1px solid #ffffff55;border-radius:12px;padding:10px 14px}
+.container{max-width:1100px;margin:auto;padding:18px 14px}
+.hero{background:linear-gradient(120deg,#5425d5,#087fe5,#e83eaa);color:white;border-radius:20px;padding:25px;margin:12px 0 20px}
+.hero h2{margin-bottom:8px}
+.panel{background:white;border-radius:17px;padding:18px;margin:14px 0;box-shadow:0 3px 15px #2221}
+.panel h2{color:#5425d5;margin-bottom:14px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.service{padding:17px 12px;border-radius:17px;min-height:125px;color:white;cursor:pointer;box-shadow:0 4px 12px #0002}
+.service .emoji{font-size:30px;margin-bottom:9px}
+.service h3{font-size:15px}
+.service p{font-size:12px;margin-top:7px;opacity:.9}
+.c1{background:linear-gradient(135deg,#1769d2,#21b6e8)}
+.c2{background:linear-gradient(135deg,#6636ce,#a34be9)}
+.c3{background:linear-gradient(135deg,#078b83,#27c69b)}
+.c4{background:linear-gradient(135deg,#e38b16,#f0bb35)}
+.c5{background:linear-gradient(135deg,#db347a,#f46a9e)}
+.c6{background:linear-gradient(135deg,#293e83,#4675cb)}
+.c7{background:linear-gradient(135deg,#167b43,#53b95e)}
+.c8{background:linear-gradient(135deg,#b94a25,#ed8852)}
+.section-title{margin:22px 0 12px;color:#392078}
+.muted{font-size:13px;color:#777;line-height:1.6}
+.btn2{background:#eee9ff;color:#5425d5}
+.danger{background:#d93454}
+.success{color:#13864a}
+.error{color:#d22}
+.row{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.item{padding:12px 0;border-bottom:1px solid #eee}
+.bottom{position:fixed;bottom:0;left:0;right:0;background:white;box-shadow:0 -3px 15px #0002;display:flex;justify-content:space-around;padding:9px 2px;z-index:5}
+.bottom button{background:transparent;color:#555;padding:8px 5px;font-size:12px}
+.bottom button.active{color:#5425d5}
+.page{padding-bottom:80px}
+.auth{max-width:430px;margin:45px auto;padding:22px;background:white;border-radius:20px;box-shadow:0 5px 25px #0002}
+.auth .logo{text-align:center;color:#5425d5;font-size:30px;margin-bottom:20px}
+.auth h2{text-align:center;margin-bottom:20px}
+.small{font-size:12px;color:#777}
+label{font-size:13px;font-weight:bold}
+select{padding:10px;border-radius:10px;border:1px solid #ddd}
+.service-detail{border-radius:18px;padding:22px;color:white;background:linear-gradient(135deg,#1769d2,#21b6e8)}
+footer{text-align:center;padding:25px;color:#777;font-size:12px}
+@media(min-width:650px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
 </style>
 </head>
+
 <body>
 
-<header>
- <div class="top">
-  <div class="logo">🌐 JK ONLINE</div>
-  <select id="language" onchange="changeLang()">
-   <option value="gu">ગુજરાતી</option>
-   <option value="hi">हिंदी</option>
-   <option value="en">English</option>
-  </select>
-  <button onclick="openLogin()" id="loginBtn">Login / Register</button>
- </div>
-</header>
+<!-- LOGIN -->
+<section id="loginPage" class="auth">
+<div class="logo">🌐 JK ONLINE</div>
+<h2>Welcome Back</h2>
 
-<section class="hero">
- <h1 id="welcome">તમારી બધી ઓનલાઇન સેવાઓ એક જ જગ્યાએ</h1>
- <p id="subtitle">JK ONLINE માં આપનું સ્વાગત છે</p>
- <button onclick="document.getElementById('services').scrollIntoView()">Explore Services</button>
+<label>Email Address</label>
+<input id="loginEmail" type="email" placeholder="Enter your email">
+
+<label>Password</label>
+<input id="loginPassword" type="password" placeholder="Enter password">
+
+<label style="font-weight:normal">
+<input id="remember" type="checkbox" checked style="width:auto;margin:0">
+Remember Me
+</label>
+
+<button id="loginBtn" style="width:100%;margin-top:15px">LOGIN</button>
+
+<p style="text-align:center;margin-top:17px">
+<a href="#" id="forgotBtn">Forgot Password?</a>
+</p>
+<p class="small" style="text-align:center;margin-top:15px">
+Account creation is available only through Admin.
+</p>
+<p id="loginMessage" class="error"></p>
 </section>
 
+<!-- MAIN APP -->
+<div id="appPage" class="hidden page">
+
+<header>
+<div class="head">
+<div class="logo">🌐 JK ONLINE</div>
+<div class="balance">
+<div style="font-size:11px">WALLET BALANCE</div>
+<strong id="headerBalance">₹0.00</strong>
+</div>
+</div>
+</header>
+
 <main class="container">
- <div class="section-title">
-  <h2 id="serviceTitle">અમારી સેવાઓ</h2>
-  <p id="serviceSub">તમારી જરૂરી સેવા પસંદ કરો</p>
- </div>
 
- <input class="search" id="search" placeholder="🔍 સેવા શોધો..." oninput="filterServices()">
+<!-- HOME -->
+<section id="homePage">
 
- <div class="grid" id="services">
-  <div class="service" data-name="RC PDF" onclick="book('RC PDF')"><div class="emoji">🚗</div><h3>RC PDF</h3><p>Vehicle RC Service</p></div>
-  <div class="service" data-name="DL PDF" onclick="book('DL PDF')"><div class="emoji">🪪</div><h3>DL PDF</h3><p>Driving Licence</p></div>
-  <div class="service" data-name="LL PDF" onclick="book('LL PDF')"><div class="emoji">🚘</div><h3>LL PDF</h3><p>Learning Licence</p></div>
-  <div class="service" data-name="Voter ID" onclick="book('Voter ID')"><div class="emoji">🗳️</div><h3>Voter ID</h3><p>Voter Services</p></div>
-  <div class="service" data-name="PAN Card" onclick="book('PAN Card')"><div class="emoji">💳</div><h3>PAN Card</h3><p>PAN Services</p></div>
-  <div class="service" data-name="Aadhaar" onclick="book('Aadhaar')"><div class="emoji">🆔</div><h3>Aadhaar</h3><p>Aadhaar Services</p></div>
-  <div class="service" data-name="Ayushman Card" onclick="book('Ayushman Card')"><div class="emoji">🏥</div><h3>Ayushman Card</h3><p>Health Services</p></div>
-  <div class="service" data-name="Online Form" onclick="book('Online Form')"><div class="emoji">📝</div><h3>Online Form</h3><p>Application Services</p></div>
- </div>
-
- <div class="panel">
-  <h2 id="bookingTitle">📋 Online Service Booking</h2>
-  <form onsubmit="sendBooking(event)">
-   <label>Name</label>
-   <input class="form-control" id="customer" required placeholder="તમારું નામ">
-   <label>Mobile Number</label>
-   <input class="form-control" id="mobile" required maxlength="10" pattern="[0-9]{10}" placeholder="10 Digit Mobile">
-   <label>Service</label>
-   <select class="form-control" id="selectedService">
-    <option>RC PDF</option><option>DL PDF</option><option>LL PDF</option>
-    <option>Voter ID</option><option>PAN Card</option><option>Aadhaar</option>
-    <option>Ayushman Card</option><option>Online Form</option>
-   </select>
-   <button type="submit" id="bookBtn">Submit Booking</button>
-  </form>
-  <p class="small">Demo booking only. Connect a secure backend to receive and manage real bookings.</p>
- </div>
-
- <div class="panel">
-  <h2>👨‍💼 JK ONLINE Admin</h2>
-  <p>Admin dashboard will be connected to secure authentication and database in the next step.</p>
-  <button onclick="openLogin()">Admin Login</button>
- </div>
-</main>
-
-<footer>
- <h2>🌐 JK ONLINE</h2>
- <p>Digital Services | Customer Support</p>
- <p>Domain: jkonline.new.tg</p>
- <p>© 2026 JK ONLINE. All Rights Reserved.</p>
-</footer>
-
-<div class="modal" id="loginModal">
- <div class="modal-box">
-  <button class="close" onclick="closeLogin()">✕</button>
-  <h2>JK ONLINE Login</h2>
-  <p style="margin:12px 0">Customer Login / Registration</p>
-  <input class="form-control" placeholder="Email Address" type="email">
-  <input class="form-control" placeholder="Password" type="password">
-  <button onclick="alert('Authentication is not connected yet.')" style="width:100%">Login</button>
-  <p class="small">Demo screen. Secure Firebase Authentication will be added next.</p>
- </div>
+<div class="hero">
+<h2>Welcome to JK ONLINE</h2>
+<p>Your Digital Services Portal</p>
+<div class="row" style="margin-top:17px">
+<div>
+<div class="small" style="color:white">Available Wallet</div>
+<h2 id="homeBalance">₹0.00</h2>
+</div>
+<button class="btn2" onclick="contactAdmin('wallet')">Add Money</button>
+</div>
 </div>
 
-<script>
-const translations={
- gu:{
- welcome:"તમારી બધી ઓનલાઇન સેવાઓ એક જ જગ્યાએ",
- subtitle:"JK ONLINE માં આપનું સ્વાગત છે",
- serviceTitle:"અમારી સેવાઓ",
- serviceSub:"તમારી જરૂરી સેવા પસંદ કરો",
- loginBtn:"Login / Register",
- bookingTitle:"📋 ઓનલાઇન સેવા બુકિંગ",
- bookBtn:"બુકિંગ સબમિટ કરો"
- },
- hi:{
- welcome:"आपकी सभी ऑनलाइन सेवाएं एक ही जगह",
- subtitle:"JK ONLINE में आपका स्वागत है",
- serviceTitle:"हमारी सेवाएं",
- serviceSub:"अपनी जरूरी सेवा चुनें",
- loginBtn:"लॉगिन / रजिस्टर",
- bookingTitle:"📋 ऑनलाइन सर्विस बुकिंग",
- bookBtn:"बुकिंग सबमिट करें"
- },
- en:{
- welcome:"All Your Online Services in One Place",
- subtitle:"Welcome to JK ONLINE",
- serviceTitle:"Our Services",
- serviceSub:"Choose your required service",
- loginBtn:"Login / Register",
- bookingTitle:"📋 Online Service Booking",
- bookBtn:"Submit Booking"
- }
+<div class="row">
+<h2 class="section-title">Our Services</h2>
+<select id="language" onchange="setLanguage(this.value)">
+<option value="en">English</option>
+<option value="gu">ગુજરાતી</option>
+<option value="hi">हिंदी</option>
+</select>
+</div>
+
+<input id="searchService" placeholder="🔍 Search Services..." oninput="renderServices()">
+
+<div id="serviceList"></div>
+
+<div class="panel">
+<h2>💰 Wallet Support</h2>
+<p class="muted">To add money, contact Admin on WhatsApp. Balance will be updated after Admin verification.</p>
+<button style="margin-top:12px" onclick="contactAdmin('wallet')">WhatsApp – Add Money</button>
+</div>
+</section>
+
+<!-- SERVICE DETAIL -->
+<section id="detailPage" class="hidden">
+<button class="btn2" onclick="showTab('home')">← Back</button>
+<div class="panel">
+<div class="service-detail">
+<div id="detailEmoji" style="font-size:45px">🚗</div>
+<h2 id="detailTitle" style="color:white">Service</h2>
+<p id="detailDesc"></p>
+</div>
+<div style="margin-top:18px">
+<h3>Service Price</h3>
+<h2 id="detailPrice">₹0</h2>
+<p class="muted" id="detailInstructions"></p>
+<div id="serviceInputArea"></div>
+<button id="serviceSubmit" style="width:100%;margin-top:10px">Continue</button>
+<p id="serviceMessage" class="muted" style="margin-top:12px"></p>
+</div>
+</div>
+</section>
+
+<!-- HISTORY -->
+<section id="historyPage" class="hidden">
+<div class="panel">
+<h2>Recent Transactions</h2>
+<div id="transactionList">No transactions yet.</div>
+</div>
+<div class="panel">
+<h2>Service History</h2>
+<div id="requestList">No service requests yet.</div>
+</div>
+</section>
+
+<!-- PROFILE -->
+<section id="profilePage" class="hidden">
+<div class="panel">
+<h2>My Profile</h2>
+<p id="profileEmail"></p>
+<p id="profileUid" class="muted"></p>
+</div>
+<div class="panel">
+<h2>Help & Support</h2>
+<p class="muted">Contact Admin for help, wallet and service support.</p>
+<button onclick="contactAdmin('support')">WhatsApp Support</button>
+</div>
+<button class="danger" style="width:100%" id="logoutBtn">Logout</button>
+</section>
+
+<!-- ADMIN -->
+<section id="adminPage" class="hidden">
+<div class="panel">
+<h2>🛡️ Admin Panel</h2>
+<p class="muted">Administrator Controls</p>
+</div>
+
+<div class="panel">
+<h2>Create User Account</h2>
+<label>User Email</label>
+<input id="newEmail" type="email" placeholder="User email">
+<label>Temporary Password</label>
+<input id="newPassword" type="password" placeholder="At least 6 characters">
+<button id="createUserBtn">Create Account</button>
+<p id="createMessage" class="muted"></p>
+</div>
+
+<div class="panel">
+<h2>Users & Wallet Management</h2>
+<button class="btn2" onclick="loadUsers()">Refresh Users</button>
+<div id="userList" class="muted" style="margin-top:12px">Loading...</div>
+</div>
+
+<div class="panel">
+<h2>Set Service Prices</h2>
+<div id="priceList"></div>
+</div>
+
+<div class="panel">
+<h2>Service Requests</h2>
+<div id="adminRequests">No requests.</div>
+</div>
+</section>
+
+</main>
+
+<nav class="bottom">
+<button class="active" data-tab="home" onclick="showTab('home')">🏠<br>Home</button>
+<button data-tab="home" onclick="showTab('home')">🛍️<br>Services</button>
+<button data-tab="history" onclick="showTab('history')">📜<br>History</button>
+<button data-tab="profile" onclick="showTab('profile')">👤<br>Profile</button>
+<button id="adminNav" class="hidden" data-tab="admin" onclick="showTab('admin')">🛡️<br>Admin</button>
+</nav>
+</div>
+
+<script type="module">
+
+import { initializeApp, getApps }
+from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
+
+import {
+getAuth, signInWithEmailAndPassword, signOut,
+sendPasswordResetEmail, setPersistence,
+browserLocalPersistence, browserSessionPersistence,
+createUserWithEmailAndPassword
+} from "https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js";
+
+import {
+getFirestore, doc, getDoc, setDoc, updateDoc,
+collection, getDocs, addDoc, query, where,
+orderBy, serverTimestamp, runTransaction
+} from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
+
+const firebaseConfig = {
+apiKey: "AIzaSyBBj6cdXOBlhoh1i_x7nt6XvjTKKcMASGI",
+authDomain: "jk-online-467d9.firebaseapp.com",
+projectId: "jk-online-467d9",
+storageBucket: "jk-online-467d9.firebasestorage.app",
+messagingSenderId: "57519519064",
+appId: "1:8821316f3b0aa2e2af612d:web:8821316f3b0aa2e2af612d",
+measurementId: "G-9N9JG9FXC8"
 };
 
-function changeLang(){
- let t=translations[document.getElementById('language').value];
- Object.keys(t).forEach(id=>{
-  document.getElementById(id).textContent=t[id];
- });
+// Use your Firebase Console Web App config if any value differs.
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+const ADMIN_UID = "7B4LU6YyzzUNte0vLDvR7vu4gir1";
+const ADMIN_WHATSAPP = "919023833239";
+
+let currentUser = null;
+let currentProfile = null;
+let currentService = null;
+let currentPrices = {};
+
+const services = [
+["rc","🚗","RC PDF Instant","Vehicle","Enter vehicle registration number","c1"],
+["dl","🪪","DL PDF Instant","Vehicle","Enter driving licence number","c2"],
+["ll","🚘","LL PDF Instant","Vehicle","Enter learning licence number","c3"],
+["voter","🗳️","Voter ID PDF","Voter","Enter EPIC number","c4"],
+["voterlink","📱","Voter Mobile Linking","Voter","Official verification required","c5"],
+["aadhaar","🆔","Aadhaar PDF","Aadhaar","Use official UIDAI verification","c6"],
+["a2p","🔄","Aadhaar to PAN","Aadhaar & PAN","Official verification required","c7"],
+["p2a","🔄","PAN to Aadhaar","Aadhaar & PAN","Official verification required","c8"],
+["panpdf","💳","PAN PDF","PAN","Authorized provider required","c1"],
+["pancorrection","✏️","PAN Correction","PAN","Authorized provider required","c2"],
+["ayushman","🏥","Ayushman Card","Health","Official verification required","c3"],
+["ration","🍚","Ration Card Services","Government","Official portal required","c4"],
+["driving","🚦","Driving Licence Services","Vehicle","Official portal required","c5"],
+["birth","👶","Birth Certificate","Certificates","Official portal required","c6"],
+["income","📄","Income Certificate","Certificates","Official portal required","c7"],
+["caste","📜","Caste Certificate","Certificates","Official portal required","c8"],
+["ncl","📑","Non-Creamy Layer","Certificates","Official portal required","c1"],
+["residence","🏠","Residence Certificate","Certificates","Official portal required","c2"],
+["eshram","👷","E-Shram Card","Government","Official portal required","c3"],
+["pmkisan","🌾","PM-Kisan Services","Government","Official portal required","c4"],
+["form","📝","Online Form Filling","Other Services","Contact Admin for details","c5"],
+["other","🌐","Other Government Services","Other Services","Contact Admin for details","c6"]
+];
+
+const $ = id => document.getElementById(id);
+
+function money(v){return "₹"+Number(v||0).toFixed(2)}
+
+function message(id,text,error=false){
+$(id).textContent=text;
+$(id).className=error?"error":"success";
 }
 
-function openLogin(){
- document.getElementById('loginModal').style.display='flex';
+function contactAdmin(type){
+let msg = type==="wallet"
+? "Hello Admin, I want to add money to my JK ONLINE wallet. Please guide me."
+: "Hello Admin, I need help with JK ONLINE.";
+window.open("https://wa.me/"+ADMIN_WHATSAPP+"?text="+encodeURIComponent(msg),"_blank");
 }
-function closeLogin(){
- document.getElementById('loginModal').style.display='none';
+
+window.contactAdmin=contactAdmin;
+
+$("loginBtn").onclick=async()=>{
+const email=$("loginEmail").value.trim();
+const password=$("loginPassword").value;
+if(!email||!password){message("loginMessage","Enter email and password.",true);return}
+try{
+await setPersistence(auth,$("remember").checked?browserLocalPersistence:browserSessionPersistence);
+await signInWithEmailAndPassword(auth,email,password);
+}catch(e){message("loginMessage",e.message,true)}
+};
+
+$("forgotBtn").onclick=async e=>{
+e.preventDefault();
+const email=$("loginEmail").value.trim();
+if(!email){message("loginMessage","Enter your email first.",true);return}
+try{
+await sendPasswordResetEmail(auth,email);
+message("loginMessage","Password reset email sent.");
+}catch(e){message("loginMessage",e.message,true)}
+};
+
+$("logoutBtn").onclick=()=>signOut(auth);
+
+async function loadProfile(user){
+const ref=doc(db,"users",user.uid);
+const snap=await getDoc(ref);
+
+if(!snap.exists()){
+await signOut(auth);
+throw new Error("User profile is not created. Contact Admin.");
 }
-function book(name){
- document.getElementById('selectedService').value=name;
- document.querySelector('.panel').scrollIntoView({behavior:'smooth'});
+
+const data=snap.data();
+if(data.blocked===true){
+await signOut(auth);
+throw new Error("Your account is blocked. Contact Admin.");
 }
-function filterServices(){
- let q=document.getElementById('search').value.toLowerCase();
- document.querySelectorAll('.service').forEach(s=>{
-  s.style.display=s.dataset.name.toLowerCase().includes(q)?'block':'none';
- });
+
+currentProfile=data;
+$("profileEmail").textContent=user.email||"";
+$("profileUid").textContent="Account ID: "+user.uid;
+updateBalance();
 }
-function sendBooking(e){
- e.preventDefault();
- alert('આ Demo Website છે. Booking હાલમાં સાચવાતી નથી. Backend જોડવાનું બાકી છે.');
+
+function updateBalance(){
+const b=money(currentProfile?.walletBalance||0);
+$("headerBalance").textContent=b;
+$("homeBalance").textContent=b;
 }
-</script>
-</body>
-</html>
+
+function renderServices(){
+const q=$("searchService").value.toLowerCase();
+const groups={};
+services.forEach(s=>{
+if(!s[2].toLowerCase().includes(q)&&!s[3].toLowerCase().includes(q))return;
+(groups[s[3]]??=[]).push(s);
+});
+
+$("serviceList").innerHTML="";
+Object.entries(groups).forEach(([group,items])=>{
+const title=document.createElement("h3");
+title.className="section-title";
+title.textContent=group;
+$("serviceList").appendChild(title);
+
+const grid=document.createElement("div");
+grid.className="grid";
+items.forEach(s=>{
+const card=document.createElement("div");
+card.className="service "+s[5];
+card.innerHTML=`<div class="emoji">${s[1]}</div><h3>${s[2]}</h3><p>${money(currentPrices[s[0]]||0)}</p>`;
+card.onclick=()=>openService(s[0]);
+grid.appendChild(card);
+});
+$("serviceList").appendChild(grid);
+});
+}
+
+$("searchService").addEventListener("input",renderServices);
+
+function openService(id){
+currentService=services.find(s=>s[0]===id);
+if(!currentService)return;
+$("homePage").classList.add("hidden");
+$("historyPage").classList.add("hidden");
+$("profilePage").classList.add("hidden");
+$("adminPage").classList.add("hidden");
+$("detailPage").classList.remove("hidden");
+
+$("detailEmoji").textContent=currentService[1];
+$("detailTitle").textContent=currentService[2];
+$("detailDesc").textContent=currentService[3];
+$("detailPrice").textContent=money(currentPrices[id]||0);
+$("detailInstructions").textContent=currentService[4];
+
+const area=$("serviceInputArea");
+area.innerHTML="";
+
+if(["rc","dl","ll","voter"].includes(id)){
+const label=document.createElement("label");
+label.textContent=id==="rc"?"Vehicle Registration Number":id==="dl"?"Driving Licence Number":id==="ll"?"Learning Licence Number":"EPIC Number";
+const input=document.createElement("input");
+input.id="serviceNumber";
+input.placeholder="Enter number";
+input.autocomplete="off";
+area.append(label,input);
+}else{
+const p=document.createElement("p");
+p.className="muted";
+p.textContent="This service requires an authorized provider or official portal. Do not enter Aadhaar OTP, passwords or confidential credentials here.";
+area.appendChild(p);
+}
+
+$("serviceMessage").textContent="";
+$("serviceSubmit").onclick=()=>{
+$("serviceMessage").textContent=
+"API is not connected yet. No request was sent and no money was deducted. Contact Admin for authorized service access.";
+};
+}
+
+function showTab(tab){
+["homePage","detailPage","historyPage","profilePage","adminPage"].forEach(id=>$(id).classList.add("hidden"));
+if(tab==="home")$("homePage").classList.remove("hidden");
+if(tab==="history")$("historyPage").classList.remove("hidden");
+if(tab==="profile")$("profilePage").classList.remove("hidden");
+if(tab==="admin")$("adminPage").classList.remove("hidden");
+document.querySelectorAll(".bottom button").forEach(b=>b.classList.toggle("active",b.dataset.tab===tab));
+if(tab==="history")loadHistory();
+if(tab==="admin")loadAdmin();
+}
+window.showTab=showTab;
+
+async function loadHistory(){
+const qy=query(collection(db,"walletTransactions"),where("userId","==",currentUser.uid));
+const snap=await getDocs(qy);
+$("transactionList").innerHTML="";
+if(snap.empty)$("transactionList").textContent="No transactions yet.";
+snap.forEach(d=>{
+const x=d.data();
+const el=document.createElement("div");
+el.className="item";
+el.textContent=(x.type||"Transaction")+" – "+money(x.amount);
+$("transactionList").appendChild(el);
+});
+$("requestList").textContent="No service requests yet. API integration pending.";
+}
+
+async function loadPrices(){
+const snap=await getDocs(collection(db,"services"));
+currentPrices={};
+snap.forEach(d=>currentPrices[d.id]=Number(d.data().price||0));
+renderServices();
+}
+
+function isAdmin(){return currentUser?.uid===ADMIN_UID}
+
+async function loadAdmin(){
+if(!isAdmin())return;
+await loadUsers();
+await renderPriceList();
+await loadAdminRequests();
+}
+
+$("createUserBtn").onclick=async()=>{
+const email=$("newEmail").value.trim();
+const password=$("newPassword").value;
+if(!email||password.length<6){message("createMessage","Enter valid email and password (minimum 6 characters).",true);return}
+try{
+const secondaryApp=initializeApp(firebaseConfig,"Secondary");
+const secondaryAuth=getAuth(secondaryApp);
+const cred=await createUserWithEmailAndPassword(secondaryAuth,email,password);
+
+await setDoc(doc(db,"users",cred.user.uid),{
+email:email,
+walletBalance:0,
+blocked:false,
+createdAt:serverTimestamp()
+});
+
+await signOut(secondaryAuth);
+message("createMessage","User account created successfully.");
+$("newEmail").value="";
+$("newPassword").value="";
+await loadUsers();
+}catch(e){message("createMessage",e.message,true)}
+};
+
+async function loadUsers(){
+if(!isAdmin())return;
+const snap=await getDocs(collection(db,"users"));
+$("userList").innerHTML="";
+snap.forEach(d=>{
+const u=d.data();
+const row=document.createElement("div");
+row.className="item";
+const heading=document.createElement("strong");
+heading.textContent=u.email||d.id;
+const info=document.createElement("p");
+info.textContent="Wallet: "+money(u.walletBalance)+" | "+(u.blocked?"Blocked":"Active");
+const add=document.createElement("button");
+add.textContent="Add Money";
+add.onclick=()=>addMoney(d.id,u.email||"User");
+const block=document.createElement("button");
+block.textContent=u.blocked?"Unblock":"Block";
+block.className="btn2";
+block.style.marginLeft="6px";
+block.onclick=()=>toggleBlock(d.id,!u.blocked);
+row.append(heading,info,add,block);
+$("userList").appendChild(row);
+});
+if(snap.empty)$("userList").textContent="No users found.";
+}
+
+async function addMoney(uid,email){
+const amount=Number(prompt("Enter amount in INR:"));
+if(!Number.isFinite(amount)||amount<=0)return;
+try{
+await runTransaction(db,async tx=>{
+const ref=doc(db,"users",uid);
+const snap=await tx.get(ref);
+if(!snap.exists())throw new Error("User not found");
+const old=Number(snap.data().walletBalance||0);
+tx.update(ref,{walletBalance:old+amount});
+const log=doc(collection(db,"walletTransactions"));
+tx.set(log,{
+userId:uid,
+type:"Admin Credit",
+amount:amount,
+createdAt:serverTimestamp()
+});
+});
+alert("Wallet credited for "+email);
+await loadUsers();
+}catch(e){alert(e.message)}
+}
+
+async function toggleBlock(uid,value){
+try{
+await updateDoc(doc(db,"users",uid),{blocked:value});
+await loadUsers();
+}catch(e){alert(e.message)}
+}
+
+async function renderPriceList(){
+const wrap=$("priceList");
+wrap.innerHTML="";
+services.forEach(s=>{
+const row=document.createElement("div");
+row.className="item";
+const label=document.createElement("label");
+label.textContent=s[2];
+const input=document.createElement("input");
+input.type="number";
+input.min="0";
+input.step="0.01";
+input.value=currentPrices[s[0]]||0;
+const save=document.createElement("button");
+save.textContent="Save Price";
+save.onclick=async()=>{
+const price=Number(input.value);
+if(!Number.isFinite(price)||pric
